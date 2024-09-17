@@ -96,7 +96,7 @@ def parse_ical(ical_string, courseInput = None):
             else:
                 course = courseInput
             event_details = {
-                'DTSTART': component.get('DTSTART').dt.isoformat() if component.get('DTSTART') else None,
+                'DTSTART': component.get('DTEND').dt.isoformat() if component.get('DTEND') else (component.get('DTSTART').dt.isoformat() if component.get('DTSTART') else None),
                 'SUMMARY': re.sub(r'\[.*?\]', '', str(component.get('SUMMARY')).replace('\n', ' ').strip()),
                 'DESCRIPTION': str(component.get('DESCRIPTION')).replace('\n', ' ').strip(),
                 'COURSE': course
